@@ -1,296 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <title>Restaurant Web Site</title>
-    <link rel="stylesheet" href="styles/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <!--! header section start  -->
-    <header class="header">
-      <a href="#" class="logo">
-        <img src="images/logo.png" alt="logo" />
-      </a>
-      <nav class="navbar">
-        <a href="index.html" class="active">Home</a>
-        <a href="menu.html">Menu</a>
-        <a href="products.html">Products</a>
-        <a href="contact.html">Contact</a>
-      </nav>
 
-      <div class="buttons">
-        <button id="search-btn">
-          <i class="fas fa-search"></i>
-        </button>
-        <button id="cart-btn">
-          <i class="fas fa-shopping-cart"></i>
-        </button>
-        <button id="menu-btn">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Freelancer - Start Bootstrap Template</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
 
-      <div class="search-form">
-        <input type="text" class="search-input" id="search-box" placeholder="search here">
-        <i class="fas fa-search"></i>
-      </div>
+    <style>
+        /* CSS kodlarınızı buraya ekleyin */
+        .araba {
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            position: absolute;
+            top: 50%;
+            left: 0;
+        }
+        .welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+            border: 2px solid black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .scroll-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .portfolio-item img {
+            transition: transform 0.3s;
+        }
+        .hidden {
+            display: none;
+        }
+        .pulse {
+            animation: pulse-animation 1s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .rotate {
+            animation: rotate-animation 1s;
+        }
+        @keyframes rotate-animation {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse-avatar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        #profile-image {
+            animation: pulse-avatar 2s infinite;
+        }
 
-      <div class="cart-items-container">
-        <!-- Örnek Item -->
-        <div class="cart-item">
-          <i class="fas fa-times"></i>
-          <img src="images/menu-1.png" alt="menu" />
-          <div class="content">
-            <h3>cart item 01</h3>
-            <div class="price">$15.99/-</div>
-          </div>
+        .dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-theme header {
+    background-color: #121212; /* Header için siyah arka plan rengi */
+}
+
+.dark-theme nav {
+    background-color: #000000; /* Navigasyon için siyah arka plan rengi */
+}
+
+
+.dark-theme header {
+    background-color: #121212; /* Header için siyah arka plan rengi */
+}
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container clearfix">
+            <div id="logo-box">
+                <a href="index.html" class="logo text-uppercase" onclick="window.location.href='index.html'">
+                    Mehmet Demirel
+                </a>
+            </div>
+            <div id="nav-links" class="responsive">
+                <ul>
+                    <li class="nav-item text-uppercase nav-icon">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item text-uppercase">
+                        <a href="#" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item text-uppercase">
+                        <a href="about.html" class="nav-link" onclick="window.location.href='about.html'">About</a>
+                    </li>
+                    <li class="nav-item text-uppercase">
+                        <a href="contact.html" class="nav-link" onclick="window.location.href='contact.html'">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <!-- Örnek Item -->
-        <div class="cart-item">
-          <i class="fas fa-times"></i>
-          <img src="images/menu-2.png" alt="menu" />
-          <div class="content">
-            <h3>cart item 02</h3>
-            <div class="price">$15.99/-</div>
-          </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <img id="profile-image" class="img-fluid" src="images/kalp.png" alt="">
+            <h1 class="text-uppercase" style="color: red;">Mehmet Demirel</h1>
+            <hr class="star-dark">
+            <h2 class="sliding-text" style="color:rgb(39, 3, 19);">Graphic Artist - Web Designer - Illustrator</h2>
+            <button id="theme-toggle-button" onclick="toggleTheme()" class="btnc">Tema Değiştir</button>
+
+
         </div>
-        <div class="cart-item">
-          <i class="fas fa-times"></i>
-          <img src="images/menu-3.png" alt="menu" />
-          <div class="content">
-            <h3>cart item 03</h3>
-            <div class="price">$15.99/-</div>
-          </div>
+        <div id="theme-options">
+            <label for="light-theme">Light Theme</label>
+            <input type="radio" id="light-theme" name="theme" value="light" onclick="setTheme('light')">
+        
+            <label for="dark-theme">Dark Theme</label>
+            <input type="radio" id="dark-theme" name="theme" value="dark" onclick="setTheme('dark')">
         </div>
-        <div class="cart-item">
-          <i class="fas fa-times"></i>
-          <img src="images/menu-4.png" alt="menu" />
-          <div class="content">
-            <h3>cart item 04</h3>
-            <div class="price">$15.99/-</div>
-          </div>
-        </div>
-        <a class="checkout-cart-btn btn">checkout now</a>
-        <a class="clear-cart-btn btn">Clear Cart</a>
-      </div>
+        
     </header>
-    <!--! header section end  -->
 
-    <!--! home section start  -->
-    <section class="home" id="home">
-      <div class="content">
-        <h3>EXPRESS HOME DELIVERY</h3>
-        <p>
-          Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit. Laboriosam
-          Quos Repellendus Aliquam Quam Aperiam Quas?
-        </p>
-        <a href="#" class="btn">Order Now</a>
-      </div>
-    </section>
-    <!--! home section end  -->
-
-    <!--! menu section start  -->
-    <section class="menu" id="menu">
-      <h1 class="heading">our <span>menu</span></h1>
-      <div class="box-container">
-        <div class="box">
-          <div class="box-head">
-            <img src="images/menu-1.png" alt="menu" />
-            <span class="menu-category">PIZZA</span>
-            <h3>6 Mini Pizzas</h3>
-            <div class="price">$104.99 <span>119.99</span></div>
-          </div>
-          <div class="box-bottom">
-            <a href="#" class="btn add-cart-btn" data-img="images/menu-1.png" data-name="6 Mini Pizzas" data-price="104.99">add to cart</a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-head">
-            <img src="images/menu-2.png" alt="menu" />
-            <span class="menu-category">Burger</span>
-            <h3>5 Mini Burgers</h3>
-            <div class="price">$99.99 <span>109.99</span></div>
-          </div>
-          <div class="box-bottom">
-            <a href="#" class="btn add-cart-btn" data-img="images/menu-2.png" data-name="5 Mini Burgers" data-price="99.99">add to cart</a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-head">
-            <img src="images/menu-3.png" alt="menu" />
-            <span class="menu-category">PIZZA</span>
-            <h3>2 Mixed Pizzas</h3>
-            <div class="price">$49.99 <span> 59.99</span></div>
-          </div>
-          <div class="box-bottom">
-            <a href="#" class="btn add-cart-btn" data-img="images/menu-3.png" data-name="2 Mixed Pizzas" data-price="49.99">add to cart</a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-head">
-            <img src="images/menu-4.png" alt="menu" />
-            <span class="menu-category">Burger</span>
-            <h3>3 Burgers</h3>
-            <div class="price">$79.99 <span>$79.99</span></div>
-          </div>
-          <div class="box-bottom">
-            <a href="#" class="btn add-cart-btn" data-img="images/menu-4.png"" data-name="3 Burgers" data-price="79.99">add to cart</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--! menu section end  -->
-
-    <!--! products section start  -->
-    <section class="products" id="products">
-      <h1 class="heading">our <span>products</span></h1>
-      <div class="box-container">
-        <div class="box">
-          <div class="box-head">
-            <span class="title">MINI BURGER</span>
-            <a href="#" class="name">Bacon Burger</a>
-          </div>
-          <div class="image">
-            <img src="images/product-1.png" alt="" />
-          </div>
-          <div class="box-bottom">
-            <div class="info">
-              <b class="price">$6.00</b>
-              <span class="amount">110gr / 300 Cal</span>
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="text-uppercase portfolio-title">Portfolio</h2>
+            <hr class="star-light">
+            <div id="portfolio-images" class="clearfix">
+                <div class="col">
+                    <div class="portfolio-item">
+                        <a href="#" class="open-modal">
+                            <img class="img-fluid-p" src="images/cabin.png" alt="">
+                            <div class="img-overlay">
+                                <div class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portfolio-item">
+                        <a href="#" class="open-modal">
+                            <img class="img-fluid-p" src="images/cake.png" alt="">
+                            <div class="img-overlay">
+                                <div class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portfolio-item">
+                        <a href="#" class="open-modal">
+                            <img class="img-fluid-p" src="images/circus.png" alt="">
+                            <div class="img-overlay">
+                                <div class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portfolio-item">
+                        <a href="#" class="open-modal">
+                            <img class="img-fluid-p" src="images/game.png" alt="">
+                            <div class="img-overlay">
+                                <div class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portfolio-item">
+                        <a href="#" class="open-modal">
+                            <img class="img-fluid-p" src="images/safe.png" alt="">
+                            <div class="img-overlay">
+                                <div class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portfolio-item">
+                        <a href="#" class="open-modal">
+                            <img class="img-fluid-p" src="images/submarine.png" alt="">
+                            <div class="img-overlay">
+                                <div class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="product-btn">
-              <a class="add-cart-btn" data-img="images/product-1.png" data-name="Bacon Burger" data-price="6.00">
-                <i class="fas fa-plus"></i>
-              </a>
-            </div>
-          </div>
         </div>
-        <div class="box">
-          <div class="box-head">
-            <span class="title">MINI BURGER</span>
-            <a href="#" class="name">Bacon Burger</a>
-          </div>
-          <div class="image">
-            <img src="images/product-2.png" alt="" />
-          </div>
-          <div class="box-bottom">
-            <div class="info">
-              <b class="price">$6.00</b>
-              <span class="amount">110gr / 300 Cal</span>
-            </div>
-            <div class="product-btn">
-              <a class="add-cart-btn" data-img="images/product-2.png" data-name="Bacon Burger" data-price="6.00">
-                <i class="fas fa-plus"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="box dark-bg">
-          <div class="box-head">
-            <span class="title">MINI BURGER</span>
-            <a href="#" class="name">Bacon Burger</a>
-          </div>
-          <div class="image">
-            <img src="images/dark-product.jpg" alt="" />
-          </div>
-          <div class="box-bottom">
-            <div class="info">
-              <b class="price">$6.00</b>
-              <span class="amount">110gr / 300 Cal</span>
-            </div>
-            <div class="product-btn">
-              <a class="add-cart-btn" data-img="images/dark-product.jpg" data-name="Bacon Burger" data-price="6.00">
-                <i class="fas fa-plus"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
-    <!--! products section end  -->
 
-    <!--! about section start  -->
-    <section class="about" id="about">
-      <h1 class="heading">about <span>us</span></h1>
-      <div class="row">
-        <div class="image">
-          <img src="images/about.jpg" alt="about" />
+    <section id="about">
+        <h2 class="text-uppercase">About</h2>
+        <hr class="star-light">
+        <div id="about-text" class="clearfix">
+            <div class="left">
+                <p class="text">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p>
+            </div>
+            <div class="right">
+                <p class="text">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p>
+            </div>
         </div>
-        <div class="content">
-          <h3>What Is The Secret Recipe Of Our Burgers?</h3>
-          <p>
-            Lorem Ipsum, Dolor Sit Amet Consectetur Adipisicing Elit. Quisquam
-            Voluptatem Facere Amet Temporibus Culpa Sit Illo Earum Cupiditate
-            Soluta Perferendis!
-          </p>
-          <p>
-            Lorem Ipsum, Dolor Sit Amet Consectetur Adipisicing Elit. Quisquam
-            Voluptatem Facere Amet Temporibus Culpa Sit Illo Earum Cupiditate
-            Soluta Perferendis!
-          </p>
-          <p>
-            Lorem Ipsum, Dolor Sit Amet Consectetur Adipisicing Elit. Quisquam
-            Voluptatem Facere Amet Temporibus Culpa Sit Illo Earum Cupiditate
-            Soluta Perferendis!
-          </p>
-          <a href="#" class="btn">learn more</a>
+        <a href="https://www.mp3indirdur.pro/" class="btn btn-outline btn-large">
+            <i class="fas fa-download"></i> Download Now!
+        </a>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="text-uppercase">Contact Me</h2>
+            <hr class="star-dark">
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="phone" placeholder="Phone">
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="5" placeholder="Message"></textarea>
+                </div>
+                <button class="btn btn-primary">Send</button>
+            </form>
         </div>
-      </div>
     </section>
-    <!--! about section end  -->
 
-    <!--! contact section start  -->
-    <section class="contact" id="contact">
-      <h1 class="heading">contact <span>us</span></h1>
-      <div class="row">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d650.5215211956167!2d34.11980628155773!3d39.14244415444542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d50d492db57789%3A0x7f131464dc8c810c!2zTcO8aGVuZGlzbGlrIE1pbWFybMSxayBGYWvDvGx0ZXNp!5e0!3m2!1str!2str!4v1715971325626!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <form>
-          <h3>get in touch</h3>
-          <div class="inputBox">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="name" name="name"/>
-          </div>
-          <div class="inputBox">
-            <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="email" name="email"/>
-          </div>
-          <div class="inputBox">
-            <i class="fas fa-phone"></i>
-            <input type="number" placeholder="phone number" name="phone"/>
-          </div>
-          <input type="submit" class="btn subbbmit" value="contact now" />
-        </form>
-      </div>
+    <hr>
+
+    <section class="blogs" id="blogs">
+        <h2 class="text-uppercase">BLOG</h2>
+        <hr class="star-light">
+        <div class="box-container">
+            <div class="box">
+                <div class="image">
+                    <img src="images/p1.jpeg" alt="">
+                </div>
+                <div class="content">
+                    <a href="#" class="title">live</a>
+                    <span>by admin / 10st may, 2020</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus vel sunt error commodi doloribus nemo praesentium. Animi, voluptates nobis aspernatur et pariatur, eos illo, obcaecati hic ipsam error adipisci! Impedit.</p>
+                    <a href="#" class="btnc">read more</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="images/p2.jpg" alt="">
+                </div>
+                <div class="content">
+                    <a href="#" class="title">why</a>
+                    <span>by admin / 11st may, 2023</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus vel sunt error commodi doloribus nemo praesentium. Animi, voluptates nobis aspernatur et pariatur, eos illo, obcaecati hic ipsam error adipisci! Impedit.</p>
+                    <a href="#" class="btnc">read more</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="images/p3.png" alt="">
+                </div>
+                <div class="content">
+                    <a href="#" class="title">pokemon</a>
+                    <span>by admin / 10st april, 2020</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus vel sunt error commodi doloribus nemo praesentium. Animi, voluptates nobis aspernatur et pariatur, eos illo, obcaecati hic ipsam error adipisci! Impedit.</p>
+                    <a href="#" class="btnc">read more</a>
+                </div>
+            </div>
+        </div>
     </section>
-    <!--! contact section end  -->
 
-    <!--! footer section start  -->
-    <section class="footer">
-      <div class="search">
-        <input type="text" class="search-input" placeholder="Search" />
-        <button class="btn btn-primary">search</button>
-      </div>
-      <div class="share">
-        <a href="#" class="fab fa-facebook"></a>
-        <a href="#" class="fab fa-twitter"></a>
-        <a href="#" class="fab fa-instagram"></a>
-        <a href="#" class="fab fa-linkedin"></a>
-        <a href="#" class="fab fa-pinterest"></a>
-      </div>
+    <footer>
+        <div class="container clearfix">
+            <div class="col">
+                <iframe src="https://www.google.com/maps/d/embed?mid=1XfWVgo5gudXf6O-44lHkqlSo-Wc&hl=en_US&ehbc=2E312F" class="map"></iframe>
+                <h4 class="text-uppercase">Location</h4>
+                <p>Taksim Meydanı
+                    Şehit Muhtar, 34435 Beyoğlu/İstanbul
+                </p>
+            </div>
+            <div class="col">
+                <h4 class="text-uppercase">Around the Web</h4>
+                <ul>
+                    <li>
+                        <button class="btn btn-outline btn-social">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-outline btn-social">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-outline btn-social">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-outline btn-social">
+                            <i class="fab fa-dribbble"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4 class="text-uppercase">About Freelancer</h4>
+                <p>Freelance is a free to use, MIT licensed Bootstrap theme created by Start Bootstrap.</p>
+            </div>
+        </div>
+    </footer>
 
-      <div class="links">
-        <a href="#" class="active">Home</a>
-        <a href="#">Menu</a>
-        <a href="#">Products</a>
-        <a href="#">Contact</a>
-      </div>
-    </section>
-    <!--! footer section end  -->
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
-    <script src="js/script.js"></script>
-  </body>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        document.querySelector('.scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                document.querySelector('.scroll-to-top').style.display = 'block';
+            } else {
+                document.querySelector('.scroll-to-top').style.display = 'none';
+            }
+        });
+
+        $(document).ready(function () {
+            $('.open-modal').on('click', function () {
+                $('.modal').addClass('visible');
+            });
+
+            $('.modal-close').on('click', function () {
+                $('.modal').removeClass('visible');
+            });
+
+            $('.portfolio-item img').hover(
+                function () {
+                    $(this).addClass('pulse');
+                },
+                function () {
+                    $(this).removeClass('pulse');
+                }
+            );
+
+            setTimeout(function () {
+                $('#welcome').fadeOut('slow');
+            }, 3000);
+        });
+    </script>
+
+    <div class="welcome-message" id="welcome">
+        Hoş geldiniz!
+    </div>
+    <button onclick="showDateTime()" class="btnc">Tarih ve Saat Göster</button>
+    <button onclick="showMessageEveryFiveSeconds()" class="btnc">Her 5 Saniyede Bir Mesaj Göster</button>
+
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <p>Modal içeriği buraya gelecek.</p>
+        </div>
+    </div>
+</body>
 </html>
+
